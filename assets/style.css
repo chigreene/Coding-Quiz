@@ -1,0 +1,26 @@
+body{
+    background-color: lightblue;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: 700;
+    padding: 20px;
+    border: solid 2px black;
+    border-radius: 10px;
+    background-color: azure;
+    text-align: center;
+}
+.questionCard{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0px auto;
+    width: 300px;
+    height: 400px;
+    background-color: azure;
+    border: solid 2px black;
+    text-align: center;
+}
