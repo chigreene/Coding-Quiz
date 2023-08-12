@@ -30,7 +30,7 @@ function startGame() {
       timerDisplay.textContent = "Time Left: " + timer;
       if (timer <= 0 || questionIndex >= questions.length) {
         clearInterval(interval);
-        // endGame();
+        endGame();
       }
     }, 1000);
   }
@@ -46,9 +46,28 @@ function startGame() {
       // Using data attributes to store the index of the answer
       button.setAttribute("data-index", i);
       button.setAttribute("style", "margin: 10px");
-    //   button.addEventListener('click', selectAnswer);
+      button.addEventListener('click', selectAnswer);
       answersDisplay.appendChild(button);
     }
   }
 
+  // Function to handle answer selection
+function selectAnswer(event) {
+    var answerIndex = event.target.getAttribute("data-index");
+    if (parseInt(answerIndex) === questions[questionIndex].correct) {
+      // Correct answer
+    } else {
+      // Incorrect answer - subtract time
+      timer -= 10;
+    }
+    questionIndex++;
+    if (questionIndex < questions.length) {
+      displayQuestion();
+    }
+  }
+  
+  // Function to end the game
+  function endGame() {
+    scoreForm.style.display = "block";
+  }
   
