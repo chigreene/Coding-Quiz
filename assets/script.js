@@ -1,16 +1,15 @@
 var startButton = document.querySelector("#start-button");
 var timerDisplay = document.querySelector("#timer");
 var questionDisplay = document.querySelector("#question");
-var questionDisplay = document.querySelector("#answer");
+var answersDisplay = document.querySelector("#answer");
 
 var timer = 60
 var questionIndex = 0;
 var questions = [
-    {questions: "What does HTML stand for?", 
-    answer: ["Hyper Text Markup Language", "Hyper Text Modality Language", "Human Text Made Language", "Human Text Modality Language"], 
-    correct: 1 },
-    {question: "What does CSS stand for?", 
-    answer: ["Computer System Standard", "Cascading Style Sheet", "Creative Styling Sheet", "Cascading System Standard"], 
+    { question: "What does HTML stand for?", 
+    answers: ["Hyper Text Markup Language", "Hyper Text Modality Language", "Human Text Made Language", "Human Text Modality Language"], 
+    correct: 1 }, { question: "What does CSS stand for?", 
+    answers: ["Computer System Standard", "Cascading Style Sheet", "Creative Styling Sheet", "Cascading System Standard"], 
     correct: 1}
 ]
 
@@ -24,7 +23,7 @@ function startGame() {
     questionIndex = 0;
     // when is question index increase
     timer = 60;
-    // displayQuestion();
+    displayQuestion();
     // Start the timer
     var interval = setInterval(function() {
       timer--;
@@ -35,3 +34,21 @@ function startGame() {
       }
     }, 1000);
   }
+
+  function displayQuestion() {
+    var question = questions[questionIndex];
+    questionDisplay.textContent = question.question;
+    answersDisplay.innerHTML = "";
+    // answer display seems broken
+    for (var i = 0; i < question.answers.length; i++) {
+      var button = document.createElement("button");
+      button.textContent = question.answers[i];
+      // Using data attributes to store the index of the answer
+      button.setAttribute("data-index", i);
+      button.setAttribute("style", "margin: 10px");
+    //   button.addEventListener('click', selectAnswer);
+      answersDisplay.appendChild(button);
+    }
+  }
+
+  
